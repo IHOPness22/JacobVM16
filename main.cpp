@@ -8,10 +8,30 @@
 int main() {
     JacobVM VM; 
     
-    //first reset everything to 0 before cycle begins
+    bool running = true;
     VM.flag = 0;
     VM.pc = 0x300;
 
+    
+    
+    //while (running) {
+    
+
+    //grab the opcode 
+    uint16_t opcode = VM.memory[VM.pc];
+    VM.pc++;
+
+    uint8_t op = (opcode >> 12) & 0x0F; 
+    //need the first number to determine type of instruction
+
+    switch (op) 
+    {
+        case 0:
+        break;
+    }
+
+    //}
+    
 
     return 0;
 }
