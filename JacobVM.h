@@ -1,13 +1,14 @@
 #include <cstdint>
+#include <stack>
+#include <array>
  
- struct JacobVM {
-    uint16_t memory[65536];
-    uint16_t reg[8];
-    uint16_t pc;
-    uint16_t flag; //keeping one flag reg for now
-    //dont know yet if i should use 1-3
-    uint16_t stack[16];
-    uint16_t sp;
+
+class JacobVM {
+    public: 
+        std::array<uint16_t, 65536> memory{};
+        std::array<uint16_t, 8> reg{};
+        std::stack<uint16_t> stack;
+        uint16_t pc;
+        uint16_t flag;
 };
 
-JacobVM VM = {};
