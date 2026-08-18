@@ -44,7 +44,12 @@ int main() {
         break;
 
         case 3: //NOT
+        uint16_t result = ~VM.reg[X];
+        VM.reg[X] = result;
         break; 
+
+        case 4: //BRANCH 
+        break;
     }
 
     //}
