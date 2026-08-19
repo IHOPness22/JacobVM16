@@ -101,7 +101,13 @@ int main() {
         break;
 
         case 15:
-        break;
+        {
+            uint8_t number = opcode & 0xFF;
+            if (Vm.flag == 0) {
+                Vm.pc = number;
+            }
+            break;
+        }
 
 
         
