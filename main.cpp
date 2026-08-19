@@ -98,6 +98,15 @@ int main() {
         case 13: //INC
         VM.reg[X]++;
         break;
+
+        case 14: //DEC
+        VM.reg[X]--;
+        break;
+
+        case 15:
+        break;
+
+
         
     }
 
