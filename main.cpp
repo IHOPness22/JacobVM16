@@ -53,6 +53,10 @@ int main() {
         break;
 
         case 5: //JMP
+        VM.pc = VM.stack.top();
+        break;
+
+        case 6: //CALL
         break;
     }
 
