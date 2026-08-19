@@ -49,6 +49,10 @@ int main() {
         break; 
 
         case 4: //BRANCH 
+        VM.pc = 0x000;
+        break;
+
+        case 5: //JMP
         break;
     }
 
