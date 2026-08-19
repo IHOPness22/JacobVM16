@@ -90,6 +90,13 @@ int main() {
         case 11: //LDR 
         VM.reg[X] = VM.reg[Y];
         break;
+
+        case 12: //STR
+        VM.memory[VM.reg[Y]] = VM.reg[X];
+        break;
+
+        case 13: //INC
+        break;
         
     }
 
