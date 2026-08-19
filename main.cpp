@@ -67,6 +67,14 @@ int main() {
         VM.pc = VM.stack.top();
         VM.stack.pop();
         break;
+
+        case 8: //JSR
+        VM.stack.push(VM.pc + 1);
+        VM.pc = 0x100
+        break;
+
+        case 9: //LD
+        break;
     }
 
     //}
