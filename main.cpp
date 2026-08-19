@@ -76,12 +76,20 @@ int main() {
         case 9: //LD
         {
             uint8_t address = opcode & 0xFF;
-            VM.reg[X] = address;
+            VM.reg[X] = VM.memory[address];
             break;
         }
         
-        case 10: //LDI
+        case 10: //LDI immediate the 8 bits are the number we need to load
+        {
+            uint8_t number = opcode & 0xFF;
+            VM.reg[X] = number;
+            break;
+        }
+
+        case 11: //LDR 
         break;
+        
     }
 
     //}
