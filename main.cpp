@@ -88,6 +88,7 @@ int main() {
         }
 
         case 11: //LDR 
+        VM.reg[X] = VM.reg[Y];
         break;
         
     }
