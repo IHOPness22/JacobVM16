@@ -70,10 +70,17 @@ int main() {
 
         case 8: //JSR
         VM.stack.push(VM.pc + 1);
-        VM.pc = 0x100
+        VM.pc = 0x100;
         break;
 
         case 9: //LD
+        {
+            uint8_t address = opcode & 0xFF;
+            VM.reg[X] = address;
+            break;
+        }
+        
+        case 10: //LDI
         break;
     }
 
