@@ -47,8 +47,8 @@ int main() {
         VM.reg[X] = VM.reg[Y] | num;
         break;  
 
-        case 4: //BRANCH 
-        VM.pc = 0x000;
+        case 4: //XOR
+        VM.reg[X] = VM.reg[Y] ^ num;
         break;
 
         case 5: //JMP
