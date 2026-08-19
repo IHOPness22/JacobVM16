@@ -25,7 +25,7 @@ int main() {
     uint8_t op = (opcode >> 12) & 0x0F; 
     uint8_t X = (opcode >> 8) & 0x0F; //the first register 
     uint8_t Y = (opcode >> 4) & 0x0F; //the second register 
-    uint8_t num = opcode & 0x0F //the last generated number we get
+    uint8_t num = opcode & 0x0F; //the last generated number we get
     //need the first number to determine type of instruction
 
     switch (op) 
@@ -44,9 +44,11 @@ int main() {
         break;
 
         case 3: //NOT
-        uint16_t result = ~VM.reg[X];
-        VM.reg[X] = result;
-        break; 
+        {
+            uint16_t result = ~VM.reg[X];
+            VM.reg[X] = result;
+            break; 
+        }    
 
         case 4: //BRANCH 
         VM.pc = 0x000;
@@ -56,7 +58,12 @@ int main() {
         VM.pc = VM.stack.top();
         break;
 
-        case 6: //CALL
+        case 6: //CALL 
+        VM.stack.push(VM.reg[X]);
+        VM.pc = VM.reg[X];
+        break;
+
+        case 7: //RET
         break;
     }
 
