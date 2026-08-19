@@ -96,6 +96,7 @@ int main() {
         break;
 
         case 13: //INC
+        VM.reg[X]++;
         break;
         
     }
