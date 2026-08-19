@@ -43,12 +43,9 @@ int main() {
         VM.reg[X] = VM.reg[Y] & num;
         break;
 
-        case 3: //NOT
-        {
-            uint16_t result = ~VM.reg[X];
-            VM.reg[X] = result;
-            break; 
-        }    
+        case 3: //OR
+        VM.reg[X] = VM.reg[Y] | num;
+        break;  
 
         case 4: //BRANCH 
         VM.pc = 0x000;
