@@ -64,6 +64,8 @@ int main() {
         break;
 
         case 7: //RET
+        VM.pc = VM.stack.top();
+        VM.stack.pop();
         break;
     }
 
