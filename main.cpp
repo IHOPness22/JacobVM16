@@ -1,9 +1,13 @@
 #include "JacobVM.h"
+#include "testProgram.cpp"
 #include <iostream>
 #include <algorithm>
 #include <array>
 #include <stack>
 #include <cstdint>
+
+extern std::array<uint16_t, 8> program;
+
 
 int main() {
     JacobVM VM; 
@@ -11,6 +15,14 @@ int main() {
     bool running = true;
     VM.flag = 0;
     VM.pc = 0x300;
+
+
+    //for any ROM i have i will load up here 
+    for (int i=0; i < program.size(); i++)
+    {
+        VM.memory[VM.pc + i] = program[i];
+    }
+
 
     
     
@@ -33,6 +45,7 @@ int main() {
         case 0: //ADD
         VM.reg[X] = VM.reg[X] + VM.reg[Y];
         if (VM.reg[X] < 255) { VM.flag = 1; } else { VM.flag = 0;}
+        std::cout << "Equals: " << VM.reg[X] << std::endl;
         break;
 
         case 1: //SUB
@@ -100,16 +113,14 @@ int main() {
         VM.reg[X]--;
         break;
 
-        case 15:
+        case 15: //BEQ
         {
             uint8_t number = opcode & 0xFF;
-            if (Vm.flag == 0) {
-                Vm.pc = number;
+            if (VM.flag == 0) {
+                VM.pc = number;
             }
             break;
         }
-
-
         
     }
 
