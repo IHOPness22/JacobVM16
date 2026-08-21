@@ -25,7 +25,7 @@ void convertInstruction(std::array<std::string, 16>& lines, int cl)
                 words.push_back(word); 
                 std::cout << word << std::endl;
                 word = "";
-            } 
+            } else if (c == ',') { }
             else { word += c;}
         }
 
@@ -35,7 +35,12 @@ void convertInstruction(std::array<std::string, 16>& lines, int cl)
             word = "";
         }
         //after collecting all the words from the sentence
-        //
+        // convert them into opcode before going to next sentence
+
+        for (std::string w: words)
+        {
+            std::cout << w << std::endl;
+        }
  
     }
 }
