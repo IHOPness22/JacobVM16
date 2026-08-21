@@ -36,7 +36,7 @@ int main() {
     while (!done)
     {
         recieveInput(lines, currentLine);
-        convertInstruction(lines, currentLine);
+        convertInstruction(lines, codes);
     }
 
 

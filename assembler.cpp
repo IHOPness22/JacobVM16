@@ -12,7 +12,7 @@ void recieveInput(std::array<std::string, 16>& lines, int cl)
     cl++;
 }
 
-void convertInstruction(std::array<std::string, 16>& lines, int cl)
+void convertInstruction(std::array<std::string, 16>& lines, std::array<uint16_t, 16>& codes)
 {
     std::vector<std::string> words;
     //this will help me so i can break every word into letters
@@ -34,13 +34,16 @@ void convertInstruction(std::array<std::string, 16>& lines, int cl)
             std::cout << word << std::endl;
             word = "";
         }
-        //after collecting all the words from the sentence
-        // convert them into opcode before going to next sentence
-
-        for (std::string w: words)
-        {
-            std::cout << w << std::endl;
-        }
- 
     }
+
+    //after collecting all the words from the sentence
+    // convert them into opcode before going to next sentence
+    std::string mash = "";
+
+    for (int i=0; i < words.size(); i++)
+    {
+        std::cout << words[i] << std::endl;
+        if (words[i] == "LDI") { mash += "A"; }
+    }
+    std::cout << mash << std::endl;
 }
