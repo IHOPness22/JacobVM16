@@ -1,9 +1,10 @@
 #include "JacobVM.h"
-#include "testProgram.cpp"
+#include "assembler.h"
 #include <iostream>
 #include <algorithm>
 #include <array>
 #include <stack>
+#include <string>
 #include <cstdint>
 
 extern std::array<uint16_t, 8> program;
@@ -18,21 +19,28 @@ int main() {
 
 
     //for any ROM i have i will load up here 
-    for (int i=0; i < program.size(); i++)
-    {
-        VM.memory[VM.pc + i] = program[i];
-    }
+    
 
 
     
     
     //while (running) {
-    for (int i=0; i < 3; i++) {
+
+    //first im gonna need to recieve input of my assmebly line
+    std::array<std::string, 16> lines;
+    int currentLine = 0;
+    bool done = false;
+    while (!done)
+    {
+        recieveInput(lines, currentLine);
+    }
+
+
+    
 
     //grab the opcode 
     uint16_t opcode = VM.memory[VM.pc];   
     VM.pc++;
-    std::cout << "opcode: " << opcode << std::endl;
 
     uint8_t op = (opcode >> 12) & 0x0F; 
     uint8_t X = (opcode >> 8) & 0x0F; //the first register 
@@ -63,7 +71,6 @@ int main() {
         case 3: //OR
         {
             VM.reg[X] = VM.reg[X] | VM.reg[Y];
-            std::cout << "Equals: " << VM.reg[X] << std::endl;
             break;
         }  
 
@@ -131,9 +138,8 @@ int main() {
 
 
         
-    }
+    //}
 
-    std::cout << "Equals: " << VM.reg[X] << std::endl;
     }
     
 
