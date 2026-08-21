@@ -3,6 +3,8 @@
 #include <iostream>
 #include <algorithm>
 #include <array>
+#include <vector>
+#include <unordered_map>
 #include <stack>
 #include <string>
 #include <cstdint>
@@ -28,11 +30,13 @@ int main() {
 
     //first im gonna need to recieve input of my assmebly line
     std::array<std::string, 16> lines;
+    std::array<uint16_t, 16> codes;  
     int currentLine = 0;
     bool done = false;
     while (!done)
     {
         recieveInput(lines, currentLine);
+        convertInstruction(lines, currentLine);
     }
 
 
