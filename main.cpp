@@ -17,9 +17,26 @@ extern std::array<uint16_t, 8> program;
 int main() {
     JacobVM VM; 
     
+    //reset every variable that needs to be resetted
     bool running = true;
     VM.flag = 0;
     VM.pc = 0x300;
+
+
+    //first im gonna need to recieve input of my assmebly line
+    std::array<std::string, 16> lines;
+    std::vector<uint16_t> codes;  
+    int currentLine = 0;
+    bool done = false;
+    std::string mash = "";
+    while (!done)
+    {
+        recieveInput(lines, currentLine);
+        convertInstruction(lines, codes, mash, done);
+        int hexResult = stringToHex(mash);
+        std::cout << hexResult << std::endl;
+        codes.push_back(hexResult);
+    }
 
 
     //for any ROM i have i will load up here 
@@ -30,19 +47,7 @@ int main() {
     
     //while (running) {
 
-    //first im gonna need to recieve input of my assmebly line
-    std::array<std::string, 16> lines;
-    std::array<uint16_t, 16> codes;  
-    int currentLine = 0;
-    bool done = false;
-    std::string mash = "";
-    while (!done)
-    {
-        recieveInput(lines, currentLine);
-        convertInstruction(lines, codes, mash);
-        int hexResult = stringToHex(mash);
-        std::cout << hexResult << std::endl;
-    }
+    
 
 
     

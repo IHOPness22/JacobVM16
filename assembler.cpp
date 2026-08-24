@@ -14,7 +14,7 @@ void recieveInput(std::array<std::string, 16>& lines, int cl)
     cl++;
 }
 
-void convertInstruction(std::array<std::string, 16>& lines, std::array<uint16_t, 16>& codes, std::string& mash)
+void convertInstruction(std::array<std::string, 16>& lines, std::vector<uint16_t>& codes, std::string& mash, bool& done)
 {
     std::vector<std::string> words;
     //this will help me so i can break every word into letters
@@ -68,6 +68,11 @@ void convertInstruction(std::array<std::string, 16>& lines, std::array<uint16_t,
         else if (words[i] == "R5") { mash += "5"; }
         else if (words[i] == "R6") { mash += "6"; }
         else if (words[i] == "R7") { mash += "7"; }
+        else if (words[i] == "end") 
+        { 
+            done = true;
+            return;
+        }
         else {
             std::string str = words[i];
             int num = std::stoi(str);
