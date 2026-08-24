@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <array>
 #include <vector>
+#include <sstream>
+#include <iomanip>
 #include <unordered_map>
 #include <stack>
 #include <string>
@@ -33,10 +35,11 @@ int main() {
     std::array<uint16_t, 16> codes;  
     int currentLine = 0;
     bool done = false;
+    std::string mash = "";
     while (!done)
     {
         recieveInput(lines, currentLine);
-        convertInstruction(lines, codes);
+        convertInstruction(lines, codes, mash);
     }
 
 
