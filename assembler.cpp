@@ -71,7 +71,6 @@ void convertInstruction(std::array<std::string, 16>& lines, std::vector<uint16_t
         else if (words[i] == "end") 
         { 
             done = true;
-            return;
         }
         else {
             std::string str = words[i];
@@ -88,6 +87,22 @@ void convertInstruction(std::array<std::string, 16>& lines, std::vector<uint16_t
                 std::string icons2 = std::to_string(rightByte);
                 mash += (icons + icons2);
             } // EX 49 in hex = 0x31
+            else {
+                int leftByte = 0;
+                int rightByte = num & 0xF;
+                std::string icons2 = "";
+                if (rightByte == 10) { icons2 = "A";}
+                else if (rightByte == 11) { icons2 = "B"; }
+                else if (rightByte == 12) { icons2 = "C"; }
+                else if (rightByte == 13) { icons2 = "D"; }
+                else if (rightByte == 14) { icons2 = "E"; }
+                else if (rightByte == 15) { icons2 = "F"; }
+                else { icons2 = std::to_string(rightByte); }
+
+                std::string icons = std::to_string(leftByte);
+                 
+                mash += (icons + icons2);
+            }
 
             
         
