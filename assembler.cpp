@@ -14,7 +14,7 @@ void recieveInput(std::array<std::string, 16>& lines, int cl)
     cl++;
 }
 
-void convertInstruction(std::array<std::string, 16>& lines, std::array<uint16_t, 16>& codes, std::string mash)
+void convertInstruction(std::array<std::string, 16>& lines, std::array<uint16_t, 16>& codes, std::string& mash)
 {
     std::vector<std::string> words;
     //this will help me so i can break every word into letters
@@ -91,16 +91,17 @@ void convertInstruction(std::array<std::string, 16>& lines, std::array<uint16_t,
         
     }
     std::cout << mash << std::endl;
+
+    /*int code = std::stoi(mash, 0, 16);
+    std::cout << "Decimal Value: " << code << "\n"; */
+    
 }
 
 
-std::string stringToHex(const std::string mash) {
-    std::stringstream ss;
-
-    ss << std::hex << std::setfill('0');
-
-    for (unsigned char c: mash) {
-        ss << std::setw(2) << static_cast<int>(c);
-    }
-    return ss.str();
+int stringToHex(std::string& mash) {
+    std::stringstream str;
+    str << mash;
+    int value;
+    str >> std::hex >> value;
+    return value;
 }

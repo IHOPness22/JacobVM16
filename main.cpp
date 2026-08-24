@@ -40,6 +40,8 @@ int main() {
     {
         recieveInput(lines, currentLine);
         convertInstruction(lines, codes, mash);
+        int hexResult = stringToHex(mash);
+        std::cout << hexResult << std::endl;
     }
 
 
