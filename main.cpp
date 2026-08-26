@@ -35,7 +35,6 @@ int main() {
         recieveInput(lines, currentLine);
         convertInstruction(lines, codes, mash, done);
         int hexResult = stringToHex(mash);
-        std::cout << hexResult << std::endl;
         codes.push_back(hexResult);
     }
 
@@ -67,12 +66,18 @@ int main() {
     uint8_t num = opcode & 0x0F; //the last generated number we get
     //need the first number to determine type of instruction
 
+    std::cout << "op: " << +op << "\n";
+    std::cout << "X: " << +X << "\n";
+    std::cout << "Y: " << +Y << "\n";
+    std::cout << "num: " << +num << "\n";
   
 
     switch (op) 
     {
         case 0: //ADD
         VM.reg[X] = VM.reg[X] + VM.reg[Y];
+        std::cout << "reg X: " << VM.reg[X] << "\n";
+        std::cout << "reg Y: " << VM.reg[Y] << "\n";
         if (VM.reg[X] < 255) { VM.flag = 1; } else { VM.flag = 0;}
         break;
 
@@ -127,6 +132,7 @@ int main() {
         {
             uint8_t number = opcode & 0xFF;
             VM.reg[X] = number;
+            std::cout << "reg X: " << VM.reg[X] << "\n";
             break;
         }
         // 0xB
@@ -164,7 +170,6 @@ int main() {
         
     }
 
-    
 
     return 0;
 }

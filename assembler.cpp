@@ -19,6 +19,7 @@ void convertInstruction(std::array<std::string, 16>& lines, std::vector<uint16_t
     std::vector<std::string> words;
     //this will help me so i can break every word into letters
     std::string word = "";
+    
     //this is a loop of all my sentences
     for (int i=0; i < lines.size(); i++) {
         //were gonna go through each character 
@@ -110,6 +111,20 @@ void convertInstruction(std::array<std::string, 16>& lines, std::vector<uint16_t
         }
         
     }
+    
+    //we need to make a check in case opcode only contains 3 bytes and not four
+    int op_count = 0;
+    for (char c: mash) {
+        op_count++; }
+    while (op_count < 4)
+    {
+        std::string oc = "0";
+        mash = mash + oc;
+        op_count++;
+    }    
+
+
+
     std::cout << mash << std::endl;
 
     /*int code = std::stoi(mash, 0, 16);
@@ -123,5 +138,6 @@ int stringToHex(std::string& mash) {
     str << mash;
     int value;
     str >> std::hex >> value;
+    mash = "";
     return value;
 }
