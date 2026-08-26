@@ -27,6 +27,7 @@ int main() {
     std::array<std::string, 16> lines;
     std::vector<uint16_t> codes;  
     int currentLine = 0;
+    int counter = 0;
     bool done = false;
     std::string mash = "";
     while (!done)
@@ -40,14 +41,18 @@ int main() {
 
 
     //for any ROM i have i will load up here 
-    
+    for (int i=0; i<codes.size(); i++)
+    {
+        std::cout << codes[i] << "\n";
+        VM.memory[VM.pc+i] = codes[i];
+    }
 
 
     
     
-    //while (running) {
+    while (running) {
 
-    
+    counter++;
 
 
     
@@ -149,12 +154,16 @@ int main() {
             }
             break;
         }
-
-
         
-    //}
-
     }
+        if (counter >= codes.size()) {
+            running = false;
+        }
+        std::cout << "R1: " << VM.reg[1] << std::endl;
+        std::cout << "R2: " << VM.reg[2] << std::endl;
+        
+    }
+
     
 
     return 0;
