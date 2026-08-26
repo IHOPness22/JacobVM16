@@ -105,7 +105,6 @@ int main() {
 
         case 6: //CALL 
         VM.stack.push(VM.reg[X]);
-        VM.pc = VM.reg[X];
         break;
 
         case 7: //RET
@@ -154,9 +153,9 @@ int main() {
         //0xF
         case 0xF: //BEQ
         { 
-            uint8_t number = opcode & 0xFF;
-            if (VM.flag == 0) {
-                VM.pc = number;
+            if (VM.reg[X] == VM.reg[Y]) {
+                VM.pc = 0x300;
+                counter = 0;
             }
             break;
         }
