@@ -103,7 +103,7 @@ int main() {
         VM.pc = VM.stack.top();
         break;
 
-        case 6: //CALL 
+        case 6: //PUSH 
         VM.stack.push(VM.reg[X]);
         break;
 

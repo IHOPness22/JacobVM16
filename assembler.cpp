@@ -57,7 +57,7 @@ void convertInstruction(std::array<std::string, 16>& lines, std::vector<uint16_t
         else if (words[i] == "OR")  { mash += "3"; }
         else if (words[i] == "XOR") { mash += "4"; }
         else if (words[i] == "JMP") { mash += "5"; }
-        else if (words[i] == "CALL") { mash += "6"; }
+        else if (words[i] == "PUSH") { mash += "6"; }
         else if (words[i] == "RET") { mash += "7"; }
         else if (words[i] == "JSR") { mash += "8"; }
         else if (words[i] == "LD") { mash += "9";}
