@@ -50,11 +50,8 @@ int main() {
     
     
     while (running) {
-
-    counter++;
-
-
     
+        counter++;
 
     //grab the opcode 
     uint16_t opcode = VM.memory[VM.pc];   
@@ -65,6 +62,7 @@ int main() {
     uint8_t Y = (opcode >> 4) & 0x0F; //the second register 
     uint8_t num = opcode & 0x0F; //the last generated number we get
     //need the first number to determine type of instruction
+
 
     std::cout << "op: " << +op << "\n";
     std::cout << "X: " << +X << "\n";
@@ -87,8 +85,7 @@ int main() {
 
         case 2: //AND
         {
-            uint8_t number = opcode & 0xFF;
-            VM.reg[X] = VM.reg[X] & number;
+            VM.reg[X] = VM.reg[X] & VM.reg[Y];
             break;
         }
 
@@ -99,7 +96,7 @@ int main() {
         }  
 
         case 4: //XOR
-        VM.reg[X] = VM.reg[Y] ^ num;
+        VM.reg[X] = VM.reg[X] ^ VM.reg[Y];
         break;
 
         case 5: //JMP
@@ -141,8 +138,11 @@ int main() {
         break;
         //OxC
         case 0xC: //STR
-        VM.memory[VM.reg[Y]] = VM.reg[X];
+        {
+        uint8_t number = opcode & 0xFF;
+        VM.memory[number] = VM.reg[X];
         break;
+        }
         //0xD
         case 0xD: //INC
         VM.reg[X]++;
@@ -153,7 +153,7 @@ int main() {
         break;
         //0xF
         case 0xF: //BEQ
-        {
+        { 
             uint8_t number = opcode & 0xFF;
             if (VM.flag == 0) {
                 VM.pc = number;
@@ -162,11 +162,13 @@ int main() {
         }
         
     }
-        if (counter >= codes.size()) {
+
+        //this is to make sure if were done executing all opcodes
+    if (counter >= codes.size() - 1) {
             running = false;
         }
         std::cout << "R1: " << VM.reg[1] << std::endl;
-        std::cout << "R2: " << VM.reg[2] << std::endl;
+        std::cout << "R2: " << VM.reg[2] << std::endl;    
         
     }
 
